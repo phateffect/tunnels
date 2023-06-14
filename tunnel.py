@@ -29,7 +29,6 @@ def lsof_port(conn, port):
     COMMAND  PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
     sshd    8661 ecs-user    7u  IPv4 341300      0t0  TCP localhost:2222 (LISTEN)
     """
-    sudo lsof -iTCP:2234 -sTCP:LISTEN
     result = conn.sudo(
         f"lsof -iTCP:{port} -sTCP:LISTEN",
         timeout=1,
