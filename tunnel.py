@@ -45,7 +45,7 @@ def lsof_port(conn, port):
 @click.argument("proxy-jump")
 @click.argument("local-port", type=int)
 @click.argument("remote-port", type=int)
-@click.option("--check-interval", type=int, default=10)
+@click.option("--check-interval", type=int, default=60)
 def cli(proxy_jump, local_port, remote_port, check_interval):
     with Connection(proxy_jump) as conn:
         with conn.forward_remote(
