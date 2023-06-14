@@ -1,0 +1,5 @@
+[program:$PROC]
+command=pipenv run python tunnel.py $JUMPPROXY $LOCAL_PORT $REMOTE_PORT
+startsecs=5
+redirect_stderr=true
+stdout_logfile=./run/logs/%(program_name)s.log
