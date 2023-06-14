@@ -29,7 +29,12 @@ def lsof_port(conn, port):
     COMMAND  PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
     sshd    8661 ecs-user    7u  IPv4 341300      0t0  TCP localhost:2222 (LISTEN)
     """
-    result = conn.sudo(f"lsof -i:{port}", timeout=1, hide="both")
+    sudo lsof -iTCP:2234 -sTCP:LISTEN
+    result = conn.sudo(
+        f"lsof -iTCP:{port} -sTCP:LISTEN",
+        timeout=1,
+        hide="both"
+    )
     headers, line = [
         [part.strip() for part in line.split(maxsplit=8)]
         for line in result.stdout.splitlines()
